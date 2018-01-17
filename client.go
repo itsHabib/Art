@@ -25,6 +25,7 @@ func (c *Client) SetAuth(auth Authentication) {
 	c.AuthInfo = auth
 }
 
+// ProcessRequest uses client to send a request and call an callback router
 func (c *Client) ProcessRequest(baseURL string, res *RestResource,
 	params map[string]string) error {
 	endpoint := strings.TrimLeft(res.RenderEndpoint(params), "/")
@@ -41,8 +42,6 @@ func (c *Client) ProcessRequest(baseURL string, res *RestResource,
 	if err != nil {
 		return err
 	}
-	if err := res.Router.CallFunc(resp); err != nil {
-		return err
-	}
-	return nil
+
+	return res.Router.CallFunc(resp, nil)
 }
