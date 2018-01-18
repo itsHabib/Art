@@ -1,9 +1,10 @@
 package nap
 
 import (
-	"testing"
 	"net/http"
+	"testing"
 )
+
 func TestAPICall(t *testing.T) {
 	api := NewAPI("https://httpbin.org")
 	router := NewRouter()
