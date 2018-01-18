@@ -41,3 +41,12 @@ func (api *API) Call(name string, params map[string]string) error {
 	}
 	return api.Client.ProcessRequest(api.BaseURL, res, params)
 }
+
+// ResourceNames returns resources in API struct
+func (api *API) ResourceNames() []string {
+	resources := []string{}
+	for k := range api.Resources {
+		resources = append(resources, k)
+	}
+	return resources
+}
