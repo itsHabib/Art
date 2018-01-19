@@ -8,10 +8,10 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/itsHabib/nap"
+	"github.com/itsHabib/art"
 )
 
-var api = nap.NewAPI("https://httpbin.org")
+var api = art.NewAPI("https://httpbin.org")
 
 func main() {
 	list := flag.Bool("list", false, "Get list of all API resources")
@@ -30,7 +30,7 @@ func main() {
 }
 
 func init() {
-	router := nap.NewRouter()
+	router := art.NewRouter()
 	router.RegisterFunc(200, func(resp *http.Response, _ interface{}) error {
 		defer resp.Body.Close()
 		content, err := ioutil.ReadAll(resp.Body)
@@ -40,6 +40,6 @@ func init() {
 		fmt.Println(string(content))
 		return nil
 	})
-	api.AddResource("get", nap.NewResource("/get", "GET", router))
+	api.AddResource("get", art.NewResource("/get", "GET", router))
 
 }

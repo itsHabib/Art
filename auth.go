@@ -1,4 +1,4 @@
-package nap
+package art
 
 // AuthToken defines a token used for auth
 type AuthToken struct {
