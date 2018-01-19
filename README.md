@@ -1,7 +1,7 @@
-# Art - API Resource Tool
+# art - API Resource Tool
 
 ## Overview
-Art is a command line tool that can be used to test an API to ensure the proper
+art is a command line tool that can be used to test an API to ensure the proper
 responses are sent back. Given a base URL the API struct maps resources to specific
 RestResources. Each RestResource also contains a Router which maps status codes to
 callback response functions. 
