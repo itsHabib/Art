@@ -6,11 +6,13 @@ responses are sent back. Given a base URL the API struct maps resources to speci
 RestResources. Each RestResource also contains a Router which maps status codes to
 callback response functions. 
 
-## Usage
-The example shows how to interact with  an API with a base URL of https://httpbin.org and a resource enpoint of /get.
-The callback response function in this example just returns a nil error when a 200 status code
-is given and also prints the contents from the request. 
+## Install
+```
+go get github.com/itsHabib/art
+```
 
+## Usage
+The example shows how to interact with  an API with a base URL of https://httpbin.org and a resource enpoint of /get. The callback response function in this example just returns a nil error when a 200 status codeis given and also prints the contents from the request. 
 ```golang
 package main
 
@@ -55,5 +57,17 @@ func init() {
 		return nil
 	})
 	api.AddResource("get", art.NewResource("/get", "GET", router))
+}
+```
+This example shows using art to register a pull request resource for GitHub REST API uses
+```golang
+// GetPullRequestResource returns a rest rource to create pull requests
+func GetPullRequestResource() *art.RestResource {
+	router := art.NewRouter()
+	router.RegisterFunc(201, PullRequestSuccess)
+	router.DefaultRouter = PullRequestDefaultRouter
+	resource := art.NewResource("/repos/{{.owner}}/{{.project}}/pulls",
+		"POST", router)
+	return resource
 }
 ```
