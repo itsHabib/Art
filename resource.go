@@ -31,7 +31,7 @@ func (r *RestResource) RenderEndpoint(params map[string]string) string {
 	}
 	t, err := template.New("resource").Parse(r.Endpoint)
 	if err != nil {
-		log.Fatalln("unalbe to parse endpoint")
+		log.Fatalln("unable to parse endpoint")
 	}
 	buffer := &bytes.Buffer{}
 	t.Execute(buffer, params)
