@@ -34,12 +34,13 @@ func (api *API) AddResource(name string, res *RestResource) {
 
 // Call uses client to make a http request on a given resource
 // given a name
-func (api *API) Call(name string, params map[string]string) error {
+func (api *API) Call(name string, params map[string]string,
+	    payload interface{}) error {
 	res, ok := api.Resources[name]
 	if !ok {
 		return fmt.Errorf("Resource does not exist: %s", name)
 	}
-	return api.Client.ProcessRequest(api.BaseURL, res, params)
+	return api.Client.ProcessRequest(api.BaseURL, res, params, payload)
 }
 
 // ResourceNames returns resources in API struct
